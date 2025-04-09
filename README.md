@@ -5,4 +5,4 @@ This repository is ran by Arsen Aloian and created with goal to put his universi
 
 ## _Without me, my rifle is useless. Without my rifle, I am useless._
 
-[![[Pasted image 20250409115623.webp]]](http://wallpapercave.com/big-boss-wallpaper)
+![https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png](http://wallpapercave.com/big-boss-wallpaper)
