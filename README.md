@@ -1,5 +1,5 @@
 # Arsen's Assignment Repository
-## _This is my repository. There are many like it, but this one is mine. Without me, my repository is useless. Without my repository, I am useless._
+### _This is my repository. There are many like it, but this one is mine. Without me, my repository is useless. Without my repository, I am useless._
 
 This repository is ran by Arsen Aloian and created with goal to put his university assignments here. 
 
