@@ -19,3 +19,5 @@ def typew(art):
         time.sleep(0.1)
 
 typew(art)
+
+#tutorial used: https://youtu.be/2h8e0tXHfk0?si=LQCgwk4QisDNc50y
