@@ -1,5 +1,3 @@
-print ('placeholder')
-
 print ('''
           /\____/\ 
         _(@ ).(@ )|_
