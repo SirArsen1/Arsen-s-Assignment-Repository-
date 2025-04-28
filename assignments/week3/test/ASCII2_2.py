@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, random
 
 while True: #allows to restart the program later
 
