@@ -1,15 +1,7 @@
 import time,sys
 
 # Typewriting machine effect
-def typew(dialogue):
-    for char in dialogue:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(0.05)
-        if char !=(" ","\n"):
-            time.sleep(0.05)
-        else:
-            time.sleep(0.01)
+from type_writing_script import typew
 
 # Characters name variables
 prof_g = ('Prof. Gesundheit: ')
@@ -32,27 +24,27 @@ while True:
 
 typew(f"{prof_g}Now, what is your name?\n")
 
-# player name input
-playername = input('> ')
+# player name variable
+pname = input('> ')
 
 typew(f"{prof_g}What a great name! I have a good friend with the same name!\n")
 
 # Second ending sections
 typew(f"{prof_g}Anyway, our law department advised me to make sure our participants want \n to be a part of the experiment we are conducting today.\n This is the last moment you can leave, after this point you have to go all the way...\n FOR THE SCIENCE!\n")
 while True:
-    typew("Anyway, are you sure you want to continue? Yes or No?\n")
+    typew(f"But I digress,{pname} are you sure you want to continue? Yes or No?\n")
     PlayerChoice = input('> ')
     if PlayerChoice == 'Yes':
         typew(f"{prof_g}I knew you had that spark in you\n")
         break
     elif PlayerChoice == 'No':
-        typew(f"{prof_g}Well, that's alright too, farewell!.\n")
+        typew(f"{prof_g}Well, that's alright too, farewell! {pname}.\n")
         break
     else:
         typew(f"{prof_g}Come again?\n")
 
 # The main segment
-typew('Now we can finally start. We came up with a technology that would allow us to travel to other dimensions!\n We made five portals and YOU will be going through them, of course with safety measures in place.\n You will spend around a minute of our time in foreign dimensions, after that we will pull you out of there.\n')
+typew(f"Now we can finally start, {pname}. We came up with a technology that would allow us to travel to other dimensions!\n We made five portals and YOU will be going through them, of course with safety measures in place.\n You will spend around a minute of our time in foreign dimensions, after that we will pull you out of there.\n")
 
 # Portals and portals list
 Portal1 = "You see grand lizard like creatures, fighting within a jungle. The sky is blood red and the place overall looks hostile.\n"
@@ -64,7 +56,7 @@ Portal = [Portal1, Portal2, Portal3, Portal4, Portal5]
 
 visited = []
 while len(visited) < len(Portal):
-    typew(f"\n{prof_g}Choose a portal you haven’t been to yet (1 to 5):\n")
+    typew(f"\n{prof_g}{pname}, Choose a portal you haven’t been to yet (1 to 5):\n")
     for i in range(1, 6):
         if i not in visited:
             print(f"Portal {i}\n")
@@ -85,10 +77,12 @@ while len(visited) < len(Portal):
         typew(f"{prof_g}Numbers only, please!\n")
 
 # Ending
-typew(f"\n{prof_g}Amazing work! You've visited all the dimensions. Thank you for your service to science!\n")
+typew(f"\n{prof_g}Amazing work, {pname}! You've visited all the dimensions. Thank you for your service to science!\n")
 
 # The help of AI was used in a process to clear up questions I had during the coding.
 # links used:
 # https://stackoverflow.com/questions/41950021/typeerror-not-supported-between-instances-of-str-and-int
 # https://stackoverflow.com/questions/33049167/attributeerror-int-object-has-no-attribute-isdigit
 # https://stackoverflow.com/questions/43189302/why-does-the-ipython-repl-tell-me-syntaxerror-unexpected-eof-while-parsing-as
+# https://www.youtube.com/watch?v=o4XveLyI6YU
+# https://www.youtube.com/watch?v=38uGbVYICwg
