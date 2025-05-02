@@ -1,7 +1,7 @@
 import random
 
-while True: #allows to restart the program later
-#First equation
+while True: # allows to restart the program later
+# First equation
     Num1 = None
     while Num1 is None:
         try:
