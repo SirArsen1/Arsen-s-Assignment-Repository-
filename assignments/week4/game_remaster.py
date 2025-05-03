@@ -46,43 +46,116 @@ while True:
 # The main segment
 typew(f"Now we can finally start, {pname}. We came up with a technology that would allow us to travel to other dimensions!\n We made five portals and YOU will be going through them, of course with safety measures in place.\n You will spend around a minute of our time in foreign dimensions, after that we will pull you out of there.\n")
 
-# Portals and portals list
-Portal1 = "You see grand lizard like creatures, fighting within a jungle. The sky is blood red and the place overall looks hostile.\n"
-Portal2 = "White walls tower over the blue sea, behind those walls is a bustling city.\n"
-Portal3 = "Darkness and nothingness surfaces this world, yet you feel like you're being watched by a far greater entity.\n Right before you leave it reveals itself, such indescribable abomination,\n that your mind copes by erasing it from your memory altogether\n"
-Portal4 = "You witness attack ships on fire off the shoulder of Orion \nand C-beams glitter in the dark near the Tannhäuser Gate\n"
-Portal5 = "A distant, loud and terrifying cry shocks you. The world was mostly a sea. Suddenly you see giant serpent \nemerging in a far distance, yet the size of this gargantuan creature scared you.\n"
-Portal = [Portal1, Portal2, Portal3, Portal4, Portal5]
+# portal def function
+def explore_portals(portal_descriptions):
+    visited = []
+    while len(visited) < len(portal_descriptions):
+        typew(f"\n{prof_g}Choose a portal you haven’t been to yet (1 to 5):\n")
+        for i in range(1, len(portal_descriptions) + 1):
+            if i not in visited:
+                print(f"Portal {i}")
 
-visited = []
-while len(visited) < len(Portal):
-    typew(f"\n{prof_g}{pname}, Choose a portal you haven’t been to yet (1 to 5):\n")
-    for i in range(1, 6):
-        if i not in visited:
-            print(f"Portal {i}\n")
-
-    choice = input('> ')
-    if choice.isdigit():
-        index = int(choice)
-        if 1 <= index <= 5:
-            if index in visited:
-                typew(f"{prof_g}You've already visited that portal! Pick a different one.\n")
+        choice = input('> ')
+        if choice.isdigit():
+            index = int(choice)
+            if 1 <= index <= len(portal_descriptions):
+                if index in visited:
+                    typew(f"{prof_g}You've already visited that portal! Pick a different one.\n")
+                else:
+                    visited.append(index)
+                    print(f"\nYou step through Portal {index}...\n")
+                    print(portal_descriptions[index - 1])
             else:
-                visited.append(index)
-                typew(f"\nYou step through Portal {index}...\n")
-                typew(Portal[index - 1] + "\n")
+                typew(f"{prof_g}That portal doesn't exist! Pick between 1 and 5.\n")
         else:
-            typew(f"{prof_g}That portal doesn't exist! Pick between 1 and 5.\n")
-    else:
-        typew(f"{prof_g}Numbers only, please!\n")
+            typew(f"{prof_g}Numbers only, please!\n")
+
+# Portal list
+portal1 = '''
+██████▒                                                                         ░▓████████████████▓▒
+███████░                                                                     ░▓█████████████▓░     ▓
+███████▓░                                                                    ▓██████▓▒░░         ▓██
+████▓▒▒▒░                                                          ▒▒░      ░▓▒░               ▓████
+██████▓▒░                                                      ░▓▓▒███▒                      ▒██████
+███▓████▓▓░                                              ░█████▓░▒█████▓                    ▒███████
+█▓▓▓▓▓▒▓█▓▓▒░                                          ░▒██▓▓█▓▒▓██████▒                   ░▓▒▒█████
+████▓▒░░░░░░                                          ▒▒▓▓▓▓██████████▒                       ▒█████
+███████▓▒░                                          ░▒▒▓▒███████████▓                         ▒█████
+▓██▓▓▓▓█▓▓▓▓▒░░                           ░░░▒▓▒░  ░▒████████████░                           ░▓█████
+▓█▓▓▓▓▒▒▓▒▒▒░                            ▒▓▓██████▒▓▓█▓█▓▓██████████▒                        ▓██████
+█▓▓▓▓▒░░░░░                           ░▒▓▓▓▓█▓███▓▓██▓███▓████████████▓░                    ░▓██████
+▓▓▓▓▓▒░░                             ░░▒▒▒▓▓▓▓██████▓██████████████████░                    ▒▓██████
+███▓▓▓▒░                            ░░▒▒▓▓▓▒▓▓████████████████▓▒░░▒▓▓▓▒           ░        ░▓▓▓█████
+█████▓▒▒▒░                        ░▓█▒▒▒█▓▒▓████████████████▒░                   ░▓▒        ▒███████
+█████▓▓▓█▓░                      ▒▓██▒▓▓█▓▓███████████████▓                      ░██░       ░███████
+█████▓███▓▒                    ░▒▓████████████████████████▓                      ▒██▓     ░▒▒███████
+█████████▓▓░                 ░▓▓▓██████████████████████████░                     ▓███▓█░  ▓█▓███████
+██████████▓▒               ░▒▓▓▓███████▓███████████████▓███▓░  ▒▒░              ▒██████▓ ▒██████████
+███████████▓░            ░▒▓▓▓▓▓████████████████████████░█████▓░░░              ▓███████▒▒██████████
+████████████▒ ░▓█▓▓▒▒▒▒▓▓▓▓██████████████████████████████░ ░░▒▓█░          ▒   ░█████████▒██████████
+████████████▒    ░▓██████████▓▓███████░▓████▒▓▒ ░████████▓   ░░ ▓    ▓▓▒  ░█▓░ ▓████████████████████
+████████████▓▓░               ▒█████   ░█████▒░     ▒█████▓░▒▓▓▓▓▓▓▓▓▓███▓▓███▒▓████████████████████
+████████████▓▒░▒░▓░░      ▒▒  ░████▓░   ██████░░▒░  ▒█████▓▓▓▓▓▓▓▓▓▓▓▓▓█████████████████████████████
+███████████████████▓▓▓▓░▒▓▓▓▓▓▓███▓███▓███████████▓▓▓▓██████████████████████████▓▓▓█████████████████
+█████████████████████▓▓▓▓▓▓▓▓███████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+\nYou see grand lizard-like creatures fighting in a jungle with a blood-red sky.\n'''
+portal2 = '''
+                                                                                                    
+                                                                                                    
+                                                                                                    
+                                               ░░                                                   
+                                               ░░                                                   
+                                               ▒▒                                                   
+                                               ▓▒                                                   
+                                               █▒                                                   
+                                              ░█▓░                                                  
+                                             ░▓██░                                                  
+                                            ░░███░                                                  
+                                           ░░▓████░░                                                
+                                           ▓░██████▓░                                               
+                                       ░ ░ █▓███████▒        ░░                                     
+                                       ░░░░█████████▒░░      ░░░                                    
+                                       ░█████████████▒▒ ░   ░▒▒░                                    
+                                       ▒██████████████▓░▒   ░▓█▓      ░▓▓▓▒░                        
+                                       ▒█████████████████   ░███░     ████▓░                        
+                                       ▓█████████████████▒▒▒▒███░    ▒████▓░                        
+        ░▒▒▒▒▒▒▒░                  ▒░░▓█████████████████████████▒   ░█████▓░            ░▒▒▒▒▒▒▒░   
+        ▒██████▓░                 ░█▒▒▓█████████████████████████▒   ▒█████▓░            ░███████░   
+░░░░░░░░▒██████▓░░░░░░░░░░░░░░░░░░▒█████████████████████████████▒░░░██████▓░░░░░░░░░░░░░░███████░░░░
+████████████████████████████████████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+████████████████████████████████████████████████████████████████████████████████████████████████████
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+\nWhite walls tower over the blue sea, hiding a bustling city behind.\n'''
+portal3 = '''
+
+Darkness surrounds you. You feel watched... then you see an unthinkable creature, and forget it instantly.'''
+portal4 = '''
+
+Attack ships on fire off the shoulder of Orion... C-beams glitter in the dark near the Tannhäuser Gate.'''
+portal5 = '''
+
+A sea world. A giant serpent rises in the distance, its size terrifies you.'''
+
+portals = [portal1, portal2, portal3, portal4, portal5]
+explore_portals(portals)
 
 # Ending
 typew(f"\n{prof_g}Amazing work, {pname}! You've visited all the dimensions. Thank you for your service to science!\n")
 
-# The help of AI was used in a process to clear up questions I had during the coding.
+# The help of AI was used in a process to clear up questions I had during the coding process.
 # links used:
 # https://stackoverflow.com/questions/41950021/typeerror-not-supported-between-instances-of-str-and-int
 # https://stackoverflow.com/questions/33049167/attributeerror-int-object-has-no-attribute-isdigit
 # https://stackoverflow.com/questions/43189302/why-does-the-ipython-repl-tell-me-syntaxerror-unexpected-eof-while-parsing-as
 # https://www.youtube.com/watch?v=o4XveLyI6YU
 # https://www.youtube.com/watch?v=38uGbVYICwg
+# https://www.youtube.com/watch?v=O8xlxE9sBmo
