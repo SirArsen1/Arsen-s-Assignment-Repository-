@@ -1,5 +1,3 @@
-# --- Game State ---
-inventory = []
 lvls = {
     "halls": {
         "description": "ddd",
@@ -8,7 +6,13 @@ lvls = {
             {"name": "Apple", "type": "food", "description": "Restores a small amount of health."},
             {"name": "key", "type": "tool", "description": "Opens a locked door."},
         ],
-        "exits": {"east": "kitchen"}
+        "exits": {
+            {
+                "direction": "east",
+                "name": "kitchen",
+                "locked": True
+            }
+        }
     },
     "kitchen": {
         "description": "ffff",
@@ -17,28 +21,54 @@ lvls = {
             {"name": "Apple2", "type": "food", "description": "Restores a small amount of health."},
             {"name": "key2", "type": "tool", "description": "Opens a locked door."},
         ],
-        "exits": {"west": "halls"}
-    }
+        "exits": {
+                    {
+                        "direction": "west",
+                        "name": "halls",
+                        "locked": False
+                    },
+                    {
+                        "direction": "north",
+                        "name": "garden",
+                        "locked": False
+                    }
+        }
+    },
+    "garden": { # supposedly locked room that must be open with key2 item
+            "description": "gggg",
+            "items_in_room": [
+                {"name": "Torch3", "type": "tool", "description": "Lights up dark places."},
+                {"name": "Apple3", "type": "food", "description": "Restores a small amount of health."},
+                {"name": "key3", "type": "tool", "description": "Opens a locked door."},
+            ],
+            "exits": {
+                    "direction": "south",
+                    "name": "kitchen",
+                    "locked": False
+                }
+            }
 }
-
-MAX_INVENTORY_SIZE = 5
 
 # Current room
 current_room = "halls"
 
-# --- Functions ---
+# exits
+exits = lvls[current_room]['exits']
 
-def show_inventory():
-    # list all names of items in the inventory, consider the case when the list is empty
-    if len(inventory) == 0:
-        print("Your inventory is empty.")
-    elif len(inventory) == MAX_INVENTORY_SIZE:
-        print("Your inventory is full.")
-        for items in inventory:
-            print(f'{items["name"]} - {items["description"]}')
-    else:
-        for items in inventory:
-            print(f'{items["name"]} - {items["description"]}')
+# item effects
+item_unlocks = {
+    ("halls", "key"): "east"
+}
+# direction
+direction = lvls[current_room]["direction"]
+
+def use(item_name):
+    # Ex: use the item differently depends on the type
+    # So this function should work with a dictionary that lists item's effects, while also working with move function
+    # Why am I complicating my homework everytime dude...
+    if (current_room, item_name) in item_unlocks:
+        direction = item_unlocks[(current_room, item_name)]
+        lvls[current_room]["exits"][direction]["locked"] = False
     #pass
 
 def show_room_items():
@@ -47,55 +77,9 @@ def show_room_items():
     if len(items) > 0:
         for items in items:
             print(f'{items["name"]} - {items["description"]}')
+            print(f"{exits['name']}")
     else:
         print("There are nothing of use in there.")
-    #pass
-
-def pick_up(item_name):
-    # pick up an item from the room if inventory limit is not met yet
-    items = lvls[current_room]["items_in_room"]
-    for item in items:
-        if item["name"].lower() == item_name:
-            inventory.append(item)
-            items.remove(item)
-            print(f"You picked up {item['name']}")
-            return
-    else:
-        print("You can't see this item in the room")
-    # pass
-
-def drop(item_name):
-    # drop an item from your inventory, at the same time append it back to the list of items for the room
-    for item in inventory:
-        if item["name"].lower() == item_name:
-            ["items_in_room"].append(item)
-            inventory.remove(item)
-            print(f"You dropped {item['name']}")
-            return
-    else:
-        print("You have nothing to drop")
-    #pass
-
-def use(item_name):
-    # Ex: use the item differently depends on the type
-    # So this function should work with a dictionary that lists item's effects, while also working with move function
-    # Why am I complicating my homework everytime dude...
-
-    pass
-
-def examine(item_name):
-    # you can only examine an item if it's in your inventory or if it is in the room
-    room_items = lvls[current_room]["items_in_room"]
-    items = room_items + inventory
-    for item in items:
-        if item["name"].lower() == item_name.lower():
-            print(f'You examined: {item["name"]} - {item["type"]}, {item["description"]}')
-            return
-        elif item["name"].lower() != item_name.lower():
-            print(f'You have to examine an item in a room or the ones you have')
-            return
-    else:
-        print("There are nothing to examine")
     #pass
 
 def move_to_room(direction): # this function was written with use of chatgpt, although I made an effort to understand it before implementing it, as seen by my comments. this decision was followed by my countless attempts at writing this function myself
@@ -109,8 +93,6 @@ def move_to_room(direction): # this function was written with use of chatgpt, al
     else:
         print("You can't go that way.")
 
-# --- Game Loop ---
-
 def inv():
     print("Welcome to the Inventory Game!")
     print("Type 'help' for a list of commands.")
@@ -120,22 +102,11 @@ def inv():
         if command == "help":
             # You can also rename the commands according to your own needs
             print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], quit")
-        elif command == "inventory":
-            show_inventory()
         elif command == "look":
             show_room_items()
-        elif command.startswith("pickup "):
-            item_name = command[7:]
-            pick_up(item_name)
-        elif command.startswith("drop "):
-            item_name = command[5:]
-            drop(item_name)
         elif command.startswith("use "):
             item_name = command[4:]
             use(item_name)
-        elif command.startswith("examine "):
-            item_name = command[8:]
-            examine(item_name)
         elif command.startswith("go "): #by ChatGPT too.
             direction = command[3:] # so the number slices off the trigger word we created to extract the data we need, and the data function understands
             move_to_room(direction) # calls the function defined above.
@@ -147,4 +118,3 @@ def inv():
 
 if __name__ == "__main__":
     inv()
-

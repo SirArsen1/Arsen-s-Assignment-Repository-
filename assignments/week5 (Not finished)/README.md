@@ -1,5 +1,5 @@
 # links used during the making of this assignment:
-![img.png](img.png)
+![img.png](image/img.png)
 ## To help with coding:
 - https://youtu.be/MZZSMaEAC2g?si=6CL6Tt_9V9k91feq
 - https://youtu.be/iMS75wmppew?si=fQUvYoCjxFUAl7aE
