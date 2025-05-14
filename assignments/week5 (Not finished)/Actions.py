@@ -1,4 +1,12 @@
-from Locations import lvls, item_unlocks
+# --- Imports ---
+from Locations import lvls, item_key
+
+# --- Health ---
+hp = ['❤','❤','❤']
+h_point = '❤'
+max_hp = 5
+
+
 
 # --- Inventory ---
 inventory = []
@@ -7,7 +15,6 @@ MAX_INVENTORY_SIZE = 5
 # --- Support functions---
     # Current room
 current_room = "halls"
-
     # function to print exits in a current room, used inside "look" function
 def show_exits():
     exits = lvls[current_room]["exits"]
@@ -15,6 +22,11 @@ def show_exits():
         print(f"You can go to {exit['direction']} which leads to {exit['name']}")
 
 # --- Actions ---
+def show_health():
+    for point in hp:
+        print(' '.join(hp))
+        return
+
 def show_inventory():
     # list all names of items in the inventory, consider the case when the list is empty
     if len(inventory) == 0:
@@ -66,16 +78,49 @@ def drop(item_name):
         print("You have nothing to drop")
 
 def use(item_name): # Use function
-    if (current_room, item_name) in item_unlocks: # compares if current room and item name, which we used are the same as in item_unlocks
-        unlock_direction = item_unlocks[(current_room, item_name)] # making a variable from a code above(?)
-        for exit in lvls[current_room]["exits"]: # loop that looks for matching data to unlock the direction
-            if exit["direction"] == unlock_direction:
-                exit["locked"] = False # if it matches it unlocks direction by turning "locked": True to False
-                print(f"You used {item_name} to unlock the path to {unlock_direction}")
-        #print("That direction doesn't exist")
+    items_in_room = lvls[current_room]["items_in_room"]
+    items = items_in_room + inventory
+    for item in items:  # Had to rewrite this chain a bit, because I tried to add another item type behavior but first time I did it rather bad, by running into for else limitation
+        if item['name'].lower() == item_name.lower():
+            if item["type"] == "tool":
+                if item in inventory:
+                    if (current_room, item_name) in item_key:  # compares if current room and item name, which we used are the same as in item_unlocks
+                        unlock_direction = item_key[(current_room, item_name)]  # making a variable from a code above(?)
+                        for exit in lvls[current_room]["exits"]:  # loop that looks for matching data to unlock the direction
+                            if exit["direction"] == unlock_direction:
+                                exit["locked"] = False  # if it matches it unlocks direction by turning "locked": True to False
+                                inventory.remove(item) # removes key from inventory after use, to prevent infinite use of key and reduce inventory clutter
+                                print(f"You used {item_name} to unlock the path to {unlock_direction}")
+                                print(f"{item_name} has been removed from your inventory")
+                                return
+                            else:
+                                print("That direction doesn't exist")
+                                return #important, because it stops loop when we get the result we need, relates to all returns in this function
+                    else:
+                        print(f"Nothing happened after you used {item_name}")
+                        return
+                else:
+                    print(f"You need to pick up {item_name} to use it")
+                    return
+            elif item["type"] == "food":
+                if item in inventory:
+                    if len(hp) < max_hp:
+                        hp.append(h_point)
+                        items.remove(item)
+                        print(f'You gained one {h_point}!')
+                        return
+                    elif len(hp) == max_hp:
+                        print('You reached max health.')
+                        return
+                else:
+                    print(f"You need to pick up {item_name} to use it")
+                    return
+            elif item["type"] != ["tool", "food"]:
+                print(f"Nothing happened after you used {item_name}")
+                return
     else:
-        print(f"Nothing happened after you used {item_name}")
-    #pass
+        print(f"There is no item in your inventory, called {item_name}")
+        return
 
 def examine(item_name):
     # you can only examine an item if it's in your inventory or if it is in the room
@@ -113,7 +158,10 @@ def inv():
         command = input("\n> ").strip().lower()
         if command == "help":
             # You can also rename the commands according to your own needs
-            print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], go [direction: i.e. north], quit")
+            print("Commands: inventory, look, pickup [item], drop [item], use [item], examine [item], go [direction: i.e. north], health, quit")
+
+        elif command == "health":
+            show_health()
 
         elif command == "inventory":
             show_inventory()
@@ -147,6 +195,6 @@ def inv():
 
         else:
             print("Unknown command. Type 'help' to see available commands.")
-
+# --- Main ---
 if __name__ == "__main__":
     inv()

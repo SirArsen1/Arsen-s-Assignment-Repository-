@@ -60,32 +60,42 @@ def use(item_name):
     #items_in_room = lvls[current_room]["items_in_room"]
     #items = items_in_room + inventory
     items = lvls[current_room]["items_in_room"]
-    for item in items:
+    for item in items: # Had to rewrite this chain a bit, because I tried to add another item type behavior but first time I did it rather bad, by running into for else limitation
         if item['name'].lower() == item_name.lower():
-            if item['type'] == 'tool':
+            if item["type"] == "tool":
                 if (current_room, item_name) in item_unlocks: # compares if current room and item name, which we used are the same as in item_unlocks
                     unlock_direction = item_unlocks[(current_room, item_name)] # making a variable from a code above(?)
                     for exit in lvls[current_room]["exits"]: # loop that looks for matching data to unlock the direction
                         if exit["direction"] == unlock_direction:
                             exit["locked"] = False # if it matches it unlocks direction by turning "locked": True to False
                             print(f"You used {item_name} to unlock the path to {unlock_direction}")
-                    #print("That direction doesn't exist")
+                            return
+                        else:
+                            print("That direction doesn't exist")
+                            return
                 else:
                     print(f"Nothing happened after you used {item_name}")
+                    return
+            elif item["type"] == "food":
+                if len(hp) < max_hp:
+                    hp.append(h_point)
+                    items.remove(item)
+                    print(f'You gained one {h_point}!')
+                    return
+                elif len(hp) == max_hp:
+                    print('You reached max health.')
+                    return
+            elif item["type"] != ["tool","food"]:
+                print(f"Nothing happened after you used {item_name}")
     else:
-        for item in items:
-            if item['name'].lower() == item_name.lower():
-                if item['type'] == 'food':
-                    if item["name"].lower() == item_name:
-                        hp.append(h_point)
-                        items.remove(item)
-                        print(f'You gained one {h_point}!')
-                    elif len(hp) == max_hp:
-                        print('You reached max health.')
-                else:
-                    print(f"Nothing happened after you used {item_name}")
-    #print("You can't use this item.")
-    #pass
+        print(f"There is no item, called {item_name}")
+        return
+
+                #else:
+                    #print("You can't use this item.")
+            #elif item["name"] != (current_room, item_name): # checks if the item in the room, elif for when we write the name of the item wrong or there is no item like that
+                #print(f"There is no item, called {item_name}")
+                #return # used to immediately return the value, after the conditions are met. that way code won't print the message three times
 
 def show_room_items():
     # list all items in current room

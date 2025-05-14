@@ -1,3 +1,4 @@
+# --- Levels ---
 lvls = {
     "halls": {
         "description": "ddd",
@@ -22,7 +23,7 @@ lvls = {
             {"direction": "north", "name": "garden", "locked": False}
         ]
     },
-    "garden": { # supposedly locked room that must be open with key2 item
+    "garden": {
             "description": "gggg",
             "items_in_room": [
                 {"name": "Torch3", "type": "tool", "description": "Lights up dark places."},
@@ -35,7 +36,8 @@ lvls = {
     }
 }
 
-# items that unlock a locked path
-item_unlocks = {
+# --- Item_Key ---
+item_key = {
+    # room    item    locked room
     ("halls", "key"): "east"
 }

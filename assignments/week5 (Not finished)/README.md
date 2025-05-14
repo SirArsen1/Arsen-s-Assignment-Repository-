@@ -8,9 +8,15 @@
 - https://stackoverflow.com/questions/8177079/take-the-content-of-a-list-and-append-it-to-another-list
 - https://stackoverflow.com/questions/34688279/simple-elif-statement-wont-work-because-of-expression-expected
 - https://www.geeksforgeeks.org/how-to-print-a-list-without-brackets-in-python/
+- https://codedamn.com/news/python/how-to-check-if-an-item-is-in-a-list
 - 
 ## ASCII art generation
 - https://patorjk.com/software/taag/#p=testall&f=Roman&t=The%20Demonic%20Plague to generate the title card
 - https://www.asciiart.eu/image-to-ascii to generate art
 ## AI
 - ChatGPT was used to answer specific questions I had during the coding process, answers to which I failed to find on the internet or in open access
+
+## Credits
+- Arsen Aloian
+- Help: 
+  - Nina Goldschmidt, code review
