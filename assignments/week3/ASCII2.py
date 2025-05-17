@@ -111,7 +111,7 @@ while True: # allows to restart the program later
 
 # Random list equation3
 
-    fruits = ['Apples', 'Bananas', 'Oranges']
+    fruits = ['Apples', '5', 'Oranges']
     ran_fruit = random.choice(fruits)
     print(ran_fruit)
 

@@ -9,7 +9,9 @@
 - https://stackoverflow.com/questions/34688279/simple-elif-statement-wont-work-because-of-expression-expected
 - https://www.geeksforgeeks.org/how-to-print-a-list-without-brackets-in-python/
 - https://codedamn.com/news/python/how-to-check-if-an-item-is-in-a-list
-- 
+- https://stackoverflow.com/questions/34753872/how-do-i-display-the-index-of-a-list-element-in-python
+- https://stackoverflow.com/questions/70189874/matching-user-input-variable-with-list-item-and-printing-item
+- https://stackoverflow.com/questions/33375535/expected-type-unionstr-bytearray-got-int-instead-warning-in-write-metho
 ## ASCII art generation
 - https://patorjk.com/software/taag/#p=testall&f=Roman&t=The%20Demonic%20Plague to generate the title card
 - https://www.asciiart.eu/image-to-ascii to generate art

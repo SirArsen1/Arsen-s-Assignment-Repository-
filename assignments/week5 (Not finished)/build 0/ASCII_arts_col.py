@@ -1,3 +1,5 @@
+# --- Imports ---
+from Actions import player_icon
 # --- Art ---
 game_title = '''
 \nWelcome to Trenches: The Demonic Plague
@@ -77,8 +79,30 @@ ascii = {
     "map": route_map
 }
 
+# --- Cells ---
+# -- Ch1 --
+cell1 = f'''
+|   |    /    /
+| N |___/ NE /
+|   .   .   |______
+|   . {p_icon} .   _E_____
+|___.,=,.__/
+'''
+cell2 = f'''
+| N |___/ NE /
+|   .   .   |
+| {p_icon}  _______|
+/   /
+'''
+
+cells = {
+    "khurik post": cell1,
+    "north trenches": cell2
+}
 # use dictionary to use files by their variable names
 
 if __name__ == "__main__":
     ascii()
 
+if __name__ == '__main__':
+    cells()

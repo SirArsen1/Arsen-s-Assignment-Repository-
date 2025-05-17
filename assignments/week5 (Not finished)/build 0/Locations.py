@@ -1,42 +1,14 @@
-# ---- Locations ----
-# --- Character Creation Function ---
-from Icon_Picker import p_icon
-# --- Cells ---
-p_icon = p_icon()
-# -- Ch1 --
-cell1 = f'''
-|   |    /    /
-| N |___/ NE /
-|   .   .   |______
-|   . {p_icon} .   _E_____
-|___.,=,.__/'''
-
-cell2 = f'''
-| N |___/ NE /
-|   .   .   |
-| {p_icon}  _______|
-/   /'''
-
-cell3 = f'''
-        |   |
-    ,___| N |___,
-____|   .   .   |____
-__W_.   . {p_icon} .   ._E__
-    |___.   .___|
-        | S |
-'''
-
-cells = [cell1, cell2]
-
+# --- Imports ---
+from ASCII_arts_col import cells
 # --- Levels ---
+# -- Ch1 --
 lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
-    "khurik post": { #cell1 # -- Ch1 --
-        "description": f"---\nKhurik post, this is where you were given your order. North path goes through a dark tunnel, \nit is dangerous to go in blind. North-east path leads to ammo warehouse, blocked by rubble and rocks, better not waste time on it.\nEast is where battlefield is.\n",
+    "khurik post": { #cell1
+        "description": f"---\n{cells.get('khurik post')}\n---\nKhurik post, this is where you were given your order. North path goes through a dark tunnel, \nit is dangerous to go in blind. North-east path leads to ammo warehouse, blocked by rubble and rocks, better not waste time on it.\nEast is where battlefield is.\n",
         "items_in_room": [
             {"name": "Torch", "type": "tool", "description": "Lights up dark places."},
             {"name": "Ration", "type": "food", "description": "Restores health point."},
         ],
-        "cell": cell1,
         "damage": False,
         "exits": [
             {"direction": "north", "name": "north trenches", "locked": True, "damage": False},
@@ -47,7 +19,6 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
     "ammo warehouse": { #cell1.1
         "description": " ",
         "items_in_room": [],
-        "cell": " ",
         "damage": True,
         "exits": [
             {"direction": "south-west", "name": "khurik post", "locked": False, "damage": False},
@@ -56,7 +27,6 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
     "open battlefield": { #cell1.2
         "description": "It's a dangerous area, easy to catch a stray bullet.",
         "items_in_room": [],
-        "cell": " ",
         "damage": True,
         "exits": [
             {"direction": "west", "name": "khurik post", "locked": False, "damage": False},
@@ -68,21 +38,6 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
             {"name": "Shovel", "type": "tool", "description": "Helps to get rid of dirt and rubble."},
             {"name": "Meds", "type": "food", "description": "Restores health point."},
         ],
-        "cell": cell2,
-        "damage": False,
-        "exits": [
-            {"direction": "north", "name": "north trenches", "locked": True, "damage": False},
-            {"direction": "north-east", "name": "battlefield", "locked": False, "damage": True},
-            {"direction": "south", "name": "khurik post", "locked": False, "damage": False}
-        ]
-    },
-    "khurik blauvald road": { #cell2
-        "description": ".",
-        "items_in_room": [
-            {"name": "Shovel", "type": "tool", "description": "Helps to get rid of dirt and rubble."},
-            {"name": "Meds", "type": "food", "description": "Restores health point."},
-        ],
-        "cell": cell2,
         "damage": False,
         "exits": [
             {"direction": "north", "name": "north trenches", "locked": True, "damage": False},
