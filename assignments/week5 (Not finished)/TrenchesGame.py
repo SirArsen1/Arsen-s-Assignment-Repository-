@@ -49,6 +49,11 @@ def damage_me():
             print('You died, restarting the game.')
             return
 
+def chapter_progression():
+    triggers = ["khurik post"]
+    if current_cell in triggers:
+        print("HII")
+
 # --- Main Functions ---
 # --- Actions ---
 def show_health():
@@ -78,7 +83,7 @@ def show_room_items():
     if len(items) > 0:
         print("You notice items:")
         for items in items:
-            print(f'{items["name"]} - {items["description"]}')
+            print(f'{items["name"]}') #{items["description"]}
         print("---") #break between items and exits
         show_exits()
         show_cell()
@@ -143,8 +148,9 @@ def use(item_name): # Use function
                 if item in inventory:
                     if len(hp) < max_hp:
                         hp.append(h_point)
-                        items.remove(item)
+                        inventory.remove(item)
                         print(f'You gained one {h_point}!')
+                        print(f"{item_name} has been removed from your inventory")
                         return
                     elif len(hp) == max_hp:
                         print('You reached max health.')
@@ -165,7 +171,7 @@ def examine(item_name):
     items = items_in_room + inventory
     for item in items:
         if item["name"].lower() == item_name.lower():
-            print(f'You examined: {item["name"]} - {item["type"]}, {item["description"]}')
+            print(f'You examined: {item["name"]} - {item["type"]}, {item["description"]} \n{item["art"]}')
             return
     else:
         print("There are nothing to examine")
@@ -245,23 +251,23 @@ def inv():
 
 # ---- Game ----
 # --- Title & intro ---
-print (ascii.get('title')) #game title
+#print (ascii.get('title')) #game title
 
 # -- Story backstory --
-typew ("---\nIt's been more than a year since Demonic Plague emerged in west Vateria. Demon Warlords \nmarched their armies through Null Point, what most call Hell's Gates. Under the patronage of \nLucius of Underworld, they rapidly advanced into Talayir, shocking nearby nations. \nHaphazardly they formed an alliance, once opponents became allies against the biggest \nthreat Talayir has ever seen.\n---")
+#typew ("---\nIt's been more than a year since Demonic Plague emerged in west Vateria. Demon Warlords \nmarched their armies through Null Point, what most call Hell's Gates. Under the patronage of \nLucius of Underworld, they rapidly advanced into Talayir, shocking nearby nations. \nHaphazardly they formed an alliance, once opponents became allies against the biggest \nthreat Talayir has ever seen.\n---")
 
 # -- Character creation --
 # - Player name phase -
-print ("\nWhat is your name?")
-name = input('> ')
-pname = "Private " + name
+#print ("\nWhat is your name?")
+#name = input('> ')
+#pname = "Private " + name
 # - Player icon phase - #also levels and levels info, with maps. My perfectionism is killing me
 from Locations import lvls, item_key, cells #Had to move it here because couldn't come up with a better way of implementing this
 
 # -- Story setup --
-typew(f"---\nYou're a scout soldier from Kingdom of Alverland. Your task is to deliver a valuable intel to \nunited command. Reading the intel is prohibited. The route will start from east front, near the \nriver Khurik, after which you have to move north, through trenches of Blauvald, mountains \nand forests of Äscalia, until you reach north front command center in Amania. May the God \nhelp you in this mission, {pname}.\n---")
+#typew(f"---\nYou're a scout soldier from Kingdom of Alverland. Your task is to deliver a valuable intel to \nunited command. Reading the intel is prohibited. The route will start from east front, near the \nriver Khurik, after which you have to move north, through forests of Blauvald and mountains \n of Äscalia, until you reach north front command center in Amania. May the God \nhelp you in this mission, {pname}.\n---")
 # --- Chapter 1 ---
-print (ascii.get('ch1'))
-print(f"---\n{cells[0]}\nKhurik post, this is where you were given your order. North path goes through a dark tunnel, \nit is dangerous to go blind. North-east path leads to ammo warehouse, blocked by rubble and rocks, better not touch it.\nEast is where open battlefield is,chances of dying are very high.\n---")
+#print (ascii.get('ch1'))
+#print(f"---\n{cells[0]}\nKhurik post, this is where you were given your order. North path goes through a dark tunnel, \nit is dangerous to go blind. North-east path leads to ammo warehouse, blocked by rubble and rocks, better not touch it.\nEast is where open battlefield is,chances of dying are very high.\n---")
 
 inv()
