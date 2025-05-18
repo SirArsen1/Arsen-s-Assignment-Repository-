@@ -22,3 +22,5 @@
 - Arsen Aloian
 - Help: 
   - Nina Goldschmidt, code review
+  - Jannes Schmidt, game test
+  - 

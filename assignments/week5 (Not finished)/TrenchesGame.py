@@ -15,7 +15,8 @@ MAX_INVENTORY_SIZE = 5
 
 # -- Current cell --
 current_cell = "khurik post"
-
+# -- Cells visited --
+cells_seen = []
 # -- Function to print exits in a current room, used inside "look" function --
 def show_exits():
     exits = lvls[current_cell]["exits"]
@@ -49,10 +50,23 @@ def damage_me():
             print('You died, restarting the game.')
             return
 
+# -- Prints chapters and story expositions when certain locations are reached --
 def chapter_progression():
-    triggers = ["khurik post"]
-    if current_cell in triggers:
-        print("HII")
+    global current_cell
+
+    ch1 = f"\n{ascii.get('ch1')}\n---\nYou start your challenging mission in the Khurik post, a significant part of alliance army defence.\n---\n"
+    ch2 = f"\n{ascii.get('ch2')}\n---\nFoests of Blauvald are populated by green immovable giants. These trees have a distinct color, \nsomething between blue and green."
+    ch3 = f"hi"
+
+    triggers = {
+        "khurik post":f"{ch1}",
+        "forests of blauvald":f"{ch2}",
+        "mountain road":f"{ch3}",
+    }
+
+    chapter_trigger = triggers.get(current_cell)
+    if current_cell not in cells_seen and current_cell in triggers:
+        print (triggers[current_cell])
 
 # --- Main Functions ---
 # --- Actions ---
@@ -191,6 +205,7 @@ def move_to_cell(direction): # this function was written with use of chatgpt, al
                 if exit.get("damage", False):
                     damage_event()
                     return
+                chapter_progression()
                 return
     else:
         print("You can't go that way.")
@@ -198,6 +213,7 @@ def move_to_cell(direction): # this function was written with use of chatgpt, al
 
 # --- Game Loop ---
 def inv():
+    chapter_progression()
     print("\nType 'help' for a list of commands.")
 
     while True:
@@ -251,23 +267,20 @@ def inv():
 
 # ---- Game ----
 # --- Title & intro ---
-#print (ascii.get('title')) #game title
+print (ascii.get('title')) #game titleJ
 
 # -- Story backstory --
-#typew ("---\nIt's been more than a year since Demonic Plague emerged in west Vateria. Demon Warlords \nmarched their armies through Null Point, what most call Hell's Gates. Under the patronage of \nLucius of Underworld, they rapidly advanced into Talayir, shocking nearby nations. \nHaphazardly they formed an alliance, once opponents became allies against the biggest \nthreat Talayir has ever seen.\n---")
+typew ("---\nIt's been more than a year since Demonic Plague emerged in west Vateria. Demon Warlords \nmarched their armies through Null Point, what most call Hell's Gates. Under the patronage of \nLucius of Underworld, they rapidly advanced into Talayir, shocking nearby nations. \nHaphazardly they formed an alliance, once opponents became allies against the biggest \nthreat Talayir has ever seen.\n---")
 
 # -- Character creation --
 # - Player name phase -
-#print ("\nWhat is your name?")
-#name = input('> ')
-#pname = "Private " + name
+print ("\nWhat is your name?")
+name = input('> ')
+pname = "Private " + name
 # - Player icon phase - #also levels and levels info, with maps. My perfectionism is killing me
 from Locations import lvls, item_key, cells #Had to move it here because couldn't come up with a better way of implementing this
 
 # -- Story setup --
-#typew(f"---\nYou're a scout soldier from Kingdom of Alverland. Your task is to deliver a valuable intel to \nunited command. Reading the intel is prohibited. The route will start from east front, near the \nriver Khurik, after which you have to move north, through forests of Blauvald and mountains \n of Äscalia, until you reach north front command center in Amania. May the God \nhelp you in this mission, {pname}.\n---")
-# --- Chapter 1 ---
-#print (ascii.get('ch1'))
-#print(f"---\n{cells[0]}\nKhurik post, this is where you were given your order. North path goes through a dark tunnel, \nit is dangerous to go blind. North-east path leads to ammo warehouse, blocked by rubble and rocks, better not touch it.\nEast is where open battlefield is,chances of dying are very high.\n---")
+typew(f"---\nYou're a scout soldier from Kingdom of Alverland. Your task is to deliver a valuable intel to \nunited command. Reading the intel is prohibited. The route will start from east front, near the \nriver Khurik, after which you have to move north, through forests of Blauvald and mountains \nof Äscalia, until you reach north front command center in Amania. May the God \nhelp you in this mission, {pname}.\n---")
 
 inv()
