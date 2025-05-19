@@ -12,6 +12,33 @@ cell1 = f'''
 |   . {p_icon} .   _E_____
 |___.,=,.__/'''
 
+cellbtlfld1 = f'''
+. ,:,   , .  .  . / /Ж   , .  .  . ,:,   , .  .
+.,  . ± -; .,   /  /o Ж   ±   ,'  ''  .. '   ±           
+ .    .,  , ±   |  |0   Ж     .,         \. |  /
+.   .,   -_  .,  \  \-["=-+ .   ,,     -- ( O ) --
+.,  ±   ,.' '-" , |  |0] Ж   ., ±   ''   /  |  \.  ±
+. ,:,   , .  .  . / /Ж  W, .{p_icon} .  . ,:,   , .  . ±
+.,  . ± -; .,   /  /o Ж   ;  -  " ±'   ;     _    .   
+'''
+cellbtlfld2 = f'''
+. ,:,   , .  .  . / /Ж   , .  .  . ,:,   , .  .
+.,  . ± -; .,   /  /o Ж   ±   ,'  ''  .. '   ±           
+ .    .,  , ±   |  |0   Ж     .,         \. |  /
+.   .,   -_  .,  \  \-["=-+ SW {p_icon} ,     -- ( O ) --
+.,  ±   ,.' '-" , |  |0] Ж   ., ±   ''   /  |  \.  ±
+. ,:,   , .  .  . / /Ж   , .  .  . ,:,   , .  . ±
+.,  . ± -; .,   /  /o Ж   ;  -  " ±'   ;     _    .   
+'''
+cellbtlfld3 = f'''
+. ,:,   , .  .  . / /Ж   , .  .  . ,:,   , .  .
+.,  . ± -; .,   /  /o Ж W ±  {p_icon},'  ''  .. '   ±           
+ .    .,  , ±   |  |0   Ж     .,         \. |  /
+.   .,   -_  .,  \  \-["=-+ .   ,,     -- ( O ) --
+.,  ±   ,.' '-" , |  |0] Ж   ., ±   ''   /  |  \.  ±
+. ,:,   , .  .  . / /Ж   , .  .  . ,:,   , .  . ±
+.,  . ± -; .,   /  /o Ж   ;  -  " ±'   ;     _    .   
+'''
 cell2 = f'''
 | N |___/ NE /
 |   .   .   |
@@ -26,8 +53,18 @@ __W_.   . {p_icon} .   ._E__
     |___.   .___|
         | S |'''
 
+cell3CS = f'''
+   __________
+  /  ,____,  \.
+ /  .|    |.   \.______
+|   |      |     E
+|   :.    .:    _______
+ \.  |____|   ./
+  \._________/ 
+'''
+
 cell4 = f'''
-. ,::,   , .  .|| ,  ,||,::,  .:';. ,
+. ,::,   , .  .|| ,E ,||,::,  .:';. ,
 .   . ,::,  .,||   . ,|| .|| , ±,||
 .  ,::,   .   .||, {p_icon}  .:;.||
 §[==--'  ,   .||, ||,::, || .|| ,  ,||
@@ -53,7 +90,7 @@ ____| |__|S|__| |____
     ,::, ,  ,::,   ,||.
 '''
 cell53out3 = f'''
-          {p_icon}
+NW        {p_icon}
 .,_..,_..,_..,_..,_.,
     | |  | |  | |
     | |  | |  | |
@@ -79,16 +116,14 @@ ____| |__| |__|S|____
 ,||.  ,.     .,     ,::, 
     ,::, ,  ,::,   ,||.
 '''
-
 cell6 = f'''
-,.     .,     ,::,   NE   ,.     .,     ,::,
+,.     .,     ,::,   N    ,.     .,     ,::,
   ,::,      ,.     .,      ,::,      ,.     .,
 ,.     .,     ,::,      ,.     .,     ,::,
   ,::,      ,.     .,      ,::,      ,.     .,
 ,.     .,     ,::,  {p_icon}    ,.     .,     ,::,
   ,::,      ,.     .,      ,::,      ,.     .,
 '''
-
 cell7 = f'''
                  /
             ____/
@@ -96,13 +131,33 @@ cell7 = f'''
     __/'";.._/
   _/.,.,.__/   _/|
  /oOoOo/     _/
-/.,.,./ /   /
+/.,E,./ /   /
 |.,{p_icon},.|/
 |.,.,.|  _/
 |.,.,.| /
 '''
+cell8 = f'''        
+                          /'.
+                         /  .\,
+                      .=' ,'   \.
+                     /  ;    =.  \,.
+    /\.           .,'     ,.'    '  \   ./|     
+   /  |   ,/\.   /   "     _.  '     \./   '.
+ /  ., \./  . \,'    '   ____   ;    /   .'  \.
+/ . ,  . \,     '. ,,,,/' NE '\,,,,.'  "    ;  \.'\.
+_________------"""" §§ § ' §' '§§   """"-----_________   
+ ±                                     ±         ±
+      {p_icon}      ±               ±                       ±
+'''
+cell9 = f'''
+|]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]|
+|     ,.------.,               ,.------.,               ,.------.,               ,.------.,     |
+|    ;          ;     [0]     ;          ;     [0]     ;          ;     [0]     ;          ;    |
+|  .'            '.         .'            '.         .'            '.         .'            '.  |
+| |       {p_icon}        |       |                |       |                |       |         NE     | |
+'''
 
-cells = [cell1, cell2, cell3,cell4, cell51out3, cell52out3, cell5dot1, cell5dot2]
+cells = [cell1, cellbtlfld1, cell2, cellbtlfld2, cell3,cell4, cell51out3, cell52out3, cell5dot1, cell5dot2, cell6, cell7, cell8, cell9]
 
 # --- Levels ---
 lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
@@ -132,7 +187,7 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
     "open battlefield": { #cell1.2
         "description": "---\nIt's a dangerous area, easy to catch a stray bullet.\n---",
         "items_in_room": [],
-        "cell": " ",
+        "cell": cellbtlfld1,
         "damage": True,
         "exits": [
             {"direction": "west", "name": "khurik post", "locked": False, "damage": False},
@@ -148,8 +203,17 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
         "damage": False,
         "exits": [
             {"direction": "north", "name": "road to blauvald", "locked": True, "damage": False},
-            {"direction": "north-east", "name": "battlefield", "locked": False, "damage": True},
+            {"direction": "north-east", "name": "central battlefield", "locked": False, "damage": True},
             {"direction": "south", "name": "khurik post", "locked": False, "damage": False},
+        ]
+    },
+    "central battlefield": { #cell2.1
+        "description": "---\nIt's a dangerous area, easy to catch a stray bullet.\n---",
+        "items_in_room": [],
+        "cell": cellbtlfld2,
+        "damage": True,
+        "exits": [
+            {"direction": "south-west", "name": "north trenches", "locked": False, "damage": True}
         ]
     },
     "road to blauvald": { #cell3
@@ -172,7 +236,7 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
         "items_in_room": [
             {"name": "horse saddle", "type": "tool", "art": f" ", "description": "Allows to ride a horse."},
         ],
-        "cell": " ",
+        "cell": cell3CS,
         "damage": True,
         "exits": [
             {"direction": "east", "name": "road to blauvald", "locked": False, "damage": False},
@@ -181,14 +245,14 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
     "battlefield": { #cell3.2
         "description": "---\nIt's a dangerous area, easy to catch a stray bullet.\n---",
         "items_in_room": [],
-        "cell": " ",
+        "cell": cellbtlfld3,
         "damage": True,
         "exits": [
             {"direction": "west", "name": "road to blauvald", "locked": False, "damage": False}
         ]
     },
     "forests of blauvald": { #cell4 # -- ch2 --
-        "description": "---\nAfter walking for sometime you notice an enemy minigunner stationed, not even a squirel can go unnoticed.\n---",
+        "description": " ",
         "items_in_room": [
             {"name": "sniper rifle", "type": "tool", "art": f"{ascii.get('snipe')}", "description": "Rifle that can shoot long distance targets. \nHas one bullet and was taken from the dead soldier."},
             {"name": "medkit", "type": "food", "art": f" ", "description": "Restores health point."},
@@ -253,11 +317,11 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
         "cell": cell6,
         "damage": False,
         "exits": [
-            {"direction": "north-east", "name": "mountain road", "locked": False, "damage": False},
+            {"direction": "north", "name": "mountain road", "locked": False, "damage": False},
         ]
     },
     "mountain road": { #cell7
-        "description": "---\nPassing through mountain road you see the progress you've made so far.\nYou see the trenches, that look more like a scars on face of Vateria.\nWhile going further you see a boulder blocking your way.\n---",
+        "description": " ",
         "items_in_room": [
             {"name": "lever", "type": "tool", "art": f" ", "description": "Can help move a boulder."},
             {"name": "grapes", "type": "food", "art": f" ", "description": "Restores health point."},
@@ -265,8 +329,35 @@ lvls = { # Dictionaries are case sensetive, DO NOT USE CAPITAL LETTERS
         "cell": cell7,
         "damage": False,
         "exits": [
-            {"direction": "east", "name": "mountain road", "locked": True, "damage": False},
+            {"direction": "east", "name": "three peaks road", "locked": True, "damage": False},
         ]
+    },
+    "three peaks road": {  # cell8
+        "description": "---\nAfter overcoming the previous challenge you witness a group of enemy saboteurs,\nsurrouned by many dead bodies. Fortunately they didn't notice you.\nMeybe there are something that can help you get rid of them.\n---",
+        "items_in_room": [
+            {"name": "grenade", "type": "tool", "art": f" ", "description": "Can take out a group of enemies."},
+        ],
+        "cell": cell8,
+        "damage": False,
+        "exits": [
+            {"direction": "north-east", "name": "tunnel to bergardia", "locked": False, "damage": False},
+        ]
+    },
+    "tunnel to bergardia": {  # cell9
+        "description": " ",
+        "items_in_room": [],
+        "cell": cell9,
+        "damage": False,
+        "exits": [
+            {"direction": "north-east", "name": "bergardia", "locked": False, "damage": False},
+        ]
+    },
+    "bergardia": {  # cell10 #end
+        "description": " ",
+        "items_in_room": [],
+        "cell": " ",
+        "damage": False,
+        "exits": []
     },
 }
 
@@ -278,6 +369,6 @@ item_key = {
     ("road to blauvald", "horse saddle"): "north",
     ("forests of blauvald", "sniper rifle"): "east", #ch2
     ("mountain road", "lever"): "east", #ch3
-    #("road to blauvald", "horse saddle"): "north",
+    ("three peaks road", "grenade"): "north-east",
 }
 
