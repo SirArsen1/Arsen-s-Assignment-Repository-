@@ -23,4 +23,4 @@
 - Help: 
   - Nina Goldschmidt, code review
   - Jannes Schmidt, game test
-  - 
+  - Eugene "Etozheklukva" Rusin, moral support
