@@ -57,7 +57,7 @@ def chapter_progression():
     ch1 = f"---\n{ascii.get('ch1')}\n---\nYou start your challenging mission in the Khurik post, a significant part of alliance army defence.\n---\n"
     ch2 = f"---\n{ascii.get('ch2')}\n---\nFoests of Blauvald are populated by green immovable giants. These trees have a distinct color, \nsomething between blue and green.\n---\nAfter walking for sometime you notice an enemy minigunner stationed, not even a squirel can go unnoticed.\n---"
     ch3 = f"---\n{ascii.get('ch3')}\n---\nPassing through mountain road, built by ancient dwarfs, you see the progress you've made so far.\nYou witness the trenches, that look more like a scars on face of western Vateria.\nWhile going further you see a boulder blocking your way.\n---"
-    chEnd = f"---\nAfter reaching ally kingdom of Bergardia, take a train to central command not far away in Amania. You successfully accomplishied your mission!\n---\n{ascii.ger('chE')}\nPlease, close the terminal, to restart the game or to close it."
+    chEnd = f"---\nAfter reaching ally kingdom of Bergardia, take a train to central command not far away in Amania. You successfully accomplishied your mission!\n---\n{ascii.get('chE')}\nPlease, close the terminal, to restart the game or to close it."
     triggers = {
         "khurik post":f"{ch1}",
         "forests of blauvald":f"{ch2}",
