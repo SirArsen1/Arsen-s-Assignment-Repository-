@@ -1,6 +1,7 @@
-import pygame
+import pygame, random
 
 class NyanCat(pygame.sprite.Sprite):
+
     def __init__(self, cat_x, cat_y):
         super().__init__()
         self.sprites = []
@@ -12,6 +13,9 @@ class NyanCat(pygame.sprite.Sprite):
         self.sprites.append(pygame.image.load('nyancat_frames/nyan6.png'))
         self.current_sprite = 0
         self.image = self.sprites[self.current_sprite]
+
+        self.cat_x = cat_x
+        self.cat_y = cat_y
 
         self.rect = self.image.get_rect()
         self.rect.topleft = [cat_x, cat_y]
@@ -31,13 +35,16 @@ screen = pygame.display.set_mode((Screen_Width, Screen_Height))
 pygame.display.set_caption('nyancat')
 
 # img = pygame.image.load("nyancat_frames/nyan1.png").convert_alpha()
-# img = pygame.transform.scale(img, (170,105))
 moving_sprites = pygame.sprite.Group()
-NyanCat = NyanCat(102,63)
+cat_x = random.randint(0, 1250)
+cat_y = random.randint(10, 50)
+NyanCat = NyanCat(cat_x,cat_y)
 moving_sprites.add(NyanCat)
 
-cat_x = 100
-cat_y = 100
+y_dir = 1
+y_min = 10
+y_max = 50
+y_speed = 1
 
 clock = pygame.time.Clock()
 flag = True
@@ -48,15 +55,24 @@ while flag:
         if event.type == pygame.QUIT:
             flag = False
 
-    if cat_x  < Screen_Width:
-        cat_x += 3
+    dist = random.randint(1,10)
+    if NyanCat.rect.x < Screen_Width:
+        NyanCat.rect.x += dist
     else:
-        cat_x = 0
+        NyanCat.rect.x = 0
+
+    NyanCat.rect.y += y_dir * y_speed
+
+    if NyanCat.rect.y >= y_max:
+        NyanCat.rect.y = y_max
+        y_dir = -1
+    elif NyanCat.rect.y <= y_min:
+        NyanCat.rect.y = y_min
+        y_dir = 1
 
     screen.fill(BG_Color)
     moving_sprites.draw(screen)
     moving_sprites.update()
-    #NOW IT DOESN'T MOVE
     pygame.display.flip()
 
 pygame.quit()
