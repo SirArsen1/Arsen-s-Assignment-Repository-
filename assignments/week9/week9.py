@@ -6,6 +6,7 @@ pygame.display.set_caption("Drawing Pal")
 fps_clock = pygame.time.Clock()
 BG_color = (255, 255, 255)
 
+
 Brush_Font_Container = None # container for default font, "None" so that it can fill it later
 for font_name in ["Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", None]:
     try:
@@ -85,3 +86,4 @@ while True:
 
     pygame.display.update()
     fps_clock.tick(60)
+
